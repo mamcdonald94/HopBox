@@ -1,0 +1,36 @@
+MVP Features:
+-Log and Reg with validations, create account
+-subscribe to product "box"
+-view shopping cart
+    -update subscription
+        -cart page
+            -being able to change subscription in the cart
+            -add, delete
+        -different pricing options/products
+-subscription info page
+    -subscription reviews
+        -comments(?)
+        -rating
+    -subscription info
+        -description
+            -items in "box"
+        -images(?)
+        -pricing
+-editing account info
+    -address
+    -billing
+    -delete account
+-cancel subscription
+-custom subscription
+
+Bonus:
+-recommended/similar products
+-profile picture upload
+-upload purchased items in addition to review
+-auth0 for user info
+
+
+Roles:
+
+Mark, Rick -- Back end
+Bennett, Nina -- Front end
