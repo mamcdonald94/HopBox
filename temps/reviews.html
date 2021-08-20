@@ -58,14 +58,45 @@
         {% endfor %}
     </ul>
     {% endif %} -->
-    <div class="container border border-4 border-success rounded p-2 mt-1">     
-        <p class="fs-5 fw-bolder fst-italic mb-5">
+    <div class="container border border-4 border-success overflow-scroll rounded p-2 mt-1" style='max-height: 350px; max-width: 1200px;' >     
+        <p class="fw-bold fs-5 mt-4">{{logged_user.first_name}}{{logged_user.last_name}} wrote
+                <br>
+            <span class="fw-normal fs-6 fst-italic">
+                - {{review.message}} Lorem ipsum dolor sit amet 
+                consectetur adipisicing elit. Eaque eum magni voluptate quisquam nemo consequatur 
+                nisi temporibus qui maxime fugit iste explicabo iusto aut, eos optio dignissimos. 
+                Quibusdam, quae rerum. **
+            </span>
+            <span class="fw-light text-primary fs-6 fst-normal ms-5">{{review.created_at}}</span>
+        </p>
+        <p class="fw-bold fs-5 mt-4">{{logged_user.first_name}}{{logged_user.last_name}} wrote
             <br>
-            <span class="fw-normal fs-6 fst-normal">- {{post.message}} **</span>
+            <span class="fw-normal fs-6 fst-italic">
+                - {{review.message}} Lorem ipsum dolor sit amet 
+                consectetur adipisicing elit. Eaque eum magni voluptate quisquam nemo consequatur 
+                Quibusdam, quae rerum. **
+            </span>
             <!-- {% if post.posted_by.id == request.session.user_id %}
             <a href="/delete-comment/{{post.id}}" role="button" class="btn btn-danger btn-sm fw-bold rounded">Delete</a>
             {% endif %} -->
-            <span class="fw-light text-primary fs-6 fst-normal ms-5">{{post.created_at}}</span>
-        </p>  
+            <span class="fw-light text-primary fs-6 fst-normal ms-5">{{review.created_at}}</span>
+        </p> 
+        <p class="fw-bold fs-5 mt-4">{{logged_user.first_name}}{{logged_user.last_name}} wrote
+            <br>
+        <span class="fw-normal fs-6 fst-italic">
+            - {{review.message}} Lorem ipsum dolor sit amet 
+            consectetur adipisicing elit. Eaque eum magni voluptate quisquam nemo consequatur 
+            nisi temporibus qui maxime fugit iste explicabo iusto aut, eos optio dignissimos. 
+            Quibusdam, quae rerum. **
+        </span>
+        <span class="fw-light text-primary fs-6 fst-normal ms-5">{{review.created_at}}</span>
+    </p>
+    <p class="fw-bold fs-5 mt-4">{{logged_user.first_name}}{{logged_user.last_name}} wrote
+        <br>
+    <span class="fw-normal fs-6 fst-italic">
+        - {{review.message}} Lorem ipsum dolor sit amet. **
+    </span>
+    <span class="fw-light text-primary fs-6 fst-normal ms-5">{{review.created_at}}</span>
+</p>
     </div>
 </html>
