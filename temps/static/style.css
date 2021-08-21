@@ -28,7 +28,6 @@ a{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /* width: 40%; */
 }
 
 .headline-img img{
@@ -38,4 +37,8 @@ a{
 .option-box img{
     width:300px; 
     margin:15px;
+}
+
+.option-box p{
+    margin: 0px 15px 0px 15px;
 }
