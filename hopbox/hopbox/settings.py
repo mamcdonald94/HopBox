@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'hopbox_app',
+    'django.forms',
+    'crispy-forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,6 +72,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hopbox.wsgi.application'
 
+# this was also added, remove if having problems
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+# this was also added, remove if having problems
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# this was also added, remove if having problems
+CRISPY_FAIL_SILENTLY = not DEBUG
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
