@@ -31,44 +31,11 @@
             {% endfor %}
         </ul>
         {% endif %} -->
-        <div>
-            <!-- <h3 class=" mt-5 p-2 container col-4 ">Personal Info:</h3> -->
-            <form class="container p-2 rounded" style="background-color: #91B957;" action="/register" method="POST">
-                <!-- {% csrf_token %} -->
-                <h3 class="container col-4 mt-5 p-2">Personal Info:</h3>
-                <div class="container col-3 justify-content-center mt-4 mb-3">
-                    <input class="form-control mb-3 text-secondary" placeholder="First_name" type="text" name="first_name">
-
-                    <input type="text" name="last_name" placeholder="Last_name" class="form-control col-4 mb-3 text-secondary" id="">
-<!--     
-                    <input type="text" name="username" class="form-control mb-3 text-secondary" placeholder='username'> -->
-    
-                    <input type="email" class="form-control mb-3 text-secondary" name="email" placeholder="email123@gmail.com">
-    
-                    <input type="password" class="form-control mb-3 text-secondary" name="password" placeholder="password">
-    
-                    <input type="password"  class="form-control mb-3" name="confirm_pw" placeholder="confirm_password">
-                </div>
-                <!-- <h3 class="">Personal Info:</h3> -->
-                <!-- {% csrf_token %} -->
-    <!-- {% if messages %}
-        <ul class='container'>
-            {% for message in messages %}
-            <li class='text-danger' {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</li>
-            {% endfor %}
-        </ul>
-        {% endif %} -->            
-                <h3 class="container col-4 mt-5 p-2">Shipping Info:</h3>
-                <div class="container col-2 justify-content-center mt-4 mb-3">
-                    <input type="text" class="form-control mb-3 text-secondary" name="street_address" placeholder="Street Address">
-                    <div class="container d-flex col-12 justify-content-evenly">
-                        <input type="text"  class="form-control m-1"  name="city_address" placeholder="City">
-                        <input type="text" class="form-control m-1" name="state_address" placeholder="ST">
-                    </div>
-    
-                    <button type="submit" class="mt-3 mb-5 btn-success col-8 m-4 p-2 text-center fw-bold rounded">Register</button>
-                </div>
-            </form>
+        <div class="container p-2 rounded justify-content-center" style="background-color: #91B957;">
+            <div class="col-4">
+                {% load crispy_forms_tags %}
+                {% crispy RegForm %}
+            </div>
         </div>
     </div>
 </body>
