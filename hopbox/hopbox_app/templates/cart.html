@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-white  bg-white mb-5" style="border-bottom: 3px solid #91B957;">
+        <div class="container-fluid d-flex justify-content-evenly">
+            <a class="navbar-brand ms-2 fw-bold active" href="/userdashboard">
+                <img src="static/images/HopBox-logo.png" alt="logo_placeholder" width="340" height="155"
+                    class="d-inline-block align-text-top rounded">
+            </a>
+            <ul class="container nav nav-tabs fs-5">
+                <li class="nav-item">
+                    <a class="nav-link text-success m-3" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active text-success m-3" aria-current="page" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link m-3 text-success" href="/manage-account">Manage Account</a>
+                </li>
+            </ul>
+            <p class="fs-5">
+                Welcome, {{user.firstname}}  <br>   
+                <a href="/logout" class="me-4 text-blue">Log-Off</a>
+            </p>
+        </div>
+    </nav>
+    <div>
+        <form class="container p-2 rounded" style="background-color: #91B957;" action="/register" method="POST">
+            <!-- {% csrf_token %} -->
+            <h3 class="container text-center mt-5 p-2">Here is your cart, {{user.firstname}}</h3>
+            <div class="container col-3 justify-content-center mt-4 mb-3">
+                <img src="{{subscriptions.selected_product.image_path}}" alt="{{subscriptions.selected_product.image_path}}" class="container d-flex justify-content-center col-5 mt-5" height="250">
+                <!-- this is what it should look like (below) -->
+                <img src="{% static 'images/lager_lover.png' %}" alt="{{subscriptions.selected_product.image_path}}" class="container d-flex justify-content-center col-5 mt-5" height="250">
+            </div>
+
+            <h3 class="container text-center col-4 mt-5 p-2">Shipping Info:</h3>
+            <div class="container col-5 justify-content-center mt-4 mb-3">
+                <input type="text" class="form-control mb-3 border border-danger" name="address"
+                    value="{{this_user.address}}">
+                <!-- <div class="container d-flex col-12 justify-content-evenly">
+                    <input type="text" class="form-control m-1 border border-danger" name="city_address"
+                        value="{{logged_user.city_address}}">
+                    <input type="text" class="form-control m-1 border border-danger" name="state_address"
+                        value="{{logged_user.state_address}}">
+                </div> -->
+                <button type="submit" class="container d-flex mt-3 mb-5 btn-success col-4 p-2 justify-content-center fw-bold rounded">Submit Order</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
