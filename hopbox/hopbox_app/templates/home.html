@@ -8,17 +8,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href=static/style.css>
+    {% load static %}
 </head>
 <body>
     <div id="container">
         <nav class="navbar navbar-expand-lg navbar-white  bg-white mb-3" style="border-bottom: 3px solid #91B957;">
             <div class="container-fluid">
                 <a class="navbar-brand ms-2 fw-bold active" href="/userdashboard">
-                    <img src="HopBox-logo.png" alt="logo_placeholder" width="340" height="155" class="d-inline-block align-text-top rounded">
+                    <img src="{% static 'images/HopBox-logo.png' %}" alt="logo_placeholder" width="340" height="155" class="d-inline-block align-text-top rounded">
                 </a>
                 <p class="mt-2 fs-5">   
                     <a href="/cart" class="me-4 text-blue">Cart</a>|
-                    <a href="/edit_account" class="me-4 text-blue">Manage Account</a>|
+                    <a href="/manage-account" class="me-4 text-blue">Manage Account</a>|
                     <a href="/logout" class="me-4 text-blue">Logout</a>
                 </p>
         </nav>
@@ -26,7 +27,7 @@
         <h4>Check out our Subscription Box Options Below</h4>
         <div class="index-box">
             <div class="option-box">
-                <img src=static/images/hoppy-happy.png alt="hoppy-happy">
+                <img src="{% static 'images/hoppy-happy.png' %}" alt="hoppy-happy">
                 <p>The higher the IBU the better? Then this box is for you! These option includes the hoppiest of hoppy beers</p>
                 <form action="/cart" method="get">
                     <button type="submit">I Want Hops!</button>
@@ -36,7 +37,7 @@
                 </form>
             </div>
             <div class="option-box">
-                <img src=static/images/lager-lover.png alt="lager-lover">
+                <img src="{% static 'images/lager-lover.png' %}" alt="lager-lover">
                 <p>Looking for light and crisp? Then you might be a 'Lager Lover'! Choose this box for a variety of lagers sent right to your door.</p>
                 <form action="/cart" method="get">
                     <button type="submit">I Want Lagers!</button>
@@ -46,7 +47,7 @@
                 </form>
             </div>
             <div class="option-box">
-                <img src=static/images/stout-stan.png alt="stout-stan">
+                <img src="{% static 'images/stout-stan.png' %}" alt="stout-stan">
                 <p>Dark Beers or bust? This box includes a variety of flavored stouts, porters, and other dar, and creamy varieties.</p>
                 <form action="/cart" method="get">
                     <button type="submit">I Want Dark Beer!</button>
