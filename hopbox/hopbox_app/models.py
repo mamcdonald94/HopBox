@@ -1,7 +1,8 @@
+from django.core.exceptions import ValidationError
 from django.db import models
+from django import forms
+from django.forms.fields import EmailField
 import re
-import bcrypt
-
 
 def name_validator(value):
     if len(value) < 2:
@@ -41,7 +42,7 @@ class Product(models.Model):
 class Subscription(models.Model):
     description = models.TextField(null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    # option_id = models.CharField(max_length=20, default="1")
+    option_id = models.CharField(max_length=255, default="custom")
     selected_product = models.ManyToManyField(Product) # ManyToMany with product  
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
