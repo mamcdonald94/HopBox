@@ -28,27 +28,32 @@
                 </li>
             </ul>
             <p class="fs-5">
-                Welcome, {{user_obj.firstname}}  <br>   
+                Welcome, {{user.firstname}}  <br>   
                 <a href="/logout" class="me-4 text-blue">Log-Off</a>
             </p>
         </div>
     </nav>
     <div class="container mt-5 p-4 text-dark rounded" style="background-color: #91B957;">
-        <h1 class="mb-3">Subscription Option{{Subscription.option_id}}</h1>
-        <img src="{% static 'beer_on_ice.png' %}" alt="product-pic" class="container d-flex justify-content-center col-8 mt-5" height="360">
+        <h1 class="mb-3">Subscription Option:{{subscriptions.box_name}}</h1>
+        <img src="{{subscriptions.selected_product.image_path}}" alt="{{subscriptions.selected_product.image_path}}" class="container d-flex justify-content-center col-8 mt-5" height="360">
+                    <!-- This (below) is what it should look like -->
+        <img src="{% static 'images/beer_on_ice.png' %}" alt="{{subscriptions.selected_product.image_path}}" class="container d-flex justify-content-center col-8 mt-5" height="360">
         <p class="fst-italic fs-5 mt-4">
+            {{subscriptions.description}}
+            <br>
+            <!-- This (below) is what it should look like -->
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae cumque officia vitae eligendi
-            aliquam impedit debitis incidunt. Optio doloribus perspiciatis velit consectetur cum nobis eaque dolores fuga, sit quos facilis!
+            aliquam impedit debitis incidunt. Optio doloribus perspiciatis velit consectetur cum nobis!
         </p>
-        <a href="#" role="button" class="container d-flex col-3 btn btn-lg btn-success justify-content-center fw-bold mt-4">Select this Subscription</a>
+        <a href="/cart" role="button" class="container d-flex col-3 btn btn-lg btn-success justify-content-center fw-bold mt-4">Select this Subscription</a>
     </div>
     
-    <form action="/add-post/{{show_user.id}}" method="POST" class="container rounded p-5 mt-4">
+    <form action="/options/review" method="POST" class="container rounded p-5 mt-4">
         {% csrf_token %}
-        <label for="message" class="form-label">
+        <label for="comment" class="form-label">
             <h2>Reviews: </h2>
         </label>
-        <input type="text" class="form-control" placeholder="Leave a review here!" name="message">
+        <input type="text" class="form-control" placeholder="Leave a review here!" name="comment">
     
         <button type="submit" class="container d-flex me-5 mt-3 fw-bold mb-2 btn-success col-1 p-2 justify-content-center rounded">Submit</button>
     </form>
@@ -59,6 +64,21 @@
         {% endfor %}
     </ul>
     {% endif %}
+    <br>
+{% for review in reviews %}
+    <div class="container border border-4 border-success overflow-scroll rounded p-2 mt-1" style='max-height: 350px; max-width: 1200px;' >     
+        <p class="fw-bold fs-5 mt-4">
+            {{review.submitted_by.firstname}}{{review.submitted_by.lastname}}
+            <br>
+            <span class="fw-normal fs-6 fst-italic">
+                - {{review.comment}}
+            </span>
+            <span class="fw-light text-primary fs-6 fst-normal ms-5">{{review.created_at}}</span>
+        </p>
+    </div>
+{% endfor %}
+
+<!-- This (below) is what it should look like -->
     <div class="container border border-4 border-success overflow-scroll rounded p-2 mt-1" style='max-height: 350px; max-width: 1200px;' >     
         <p class="fw-bold fs-5 mt-4">{{user_obj.firstname}}{{user_obj.lastname}} wrote
                 <br>
@@ -91,13 +111,13 @@
             Quibusdam, quae rerum. **
         </span>
         <span class="fw-light text-primary fs-6 fst-normal ms-5">{{review.created_at}}</span>
-    </p>
-    <p class="fw-bold fs-5 mt-4">{{logged_user.first_name}}{{logged_user.last_name}} wrote
+        </p>
+        <p class="fw-bold fs-5 mt-4">{{logged_user.first_name}}{{logged_user.last_name}} wrote
         <br>
-    <span class="fw-normal fs-6 fst-italic">
+        <span class="fw-normal fs-6 fst-italic">
         - {{review.comment}} Lorem ipsum dolor sit amet. **
-    </span>
-    <span class="fw-light text-primary fs-6 fst-normal ms-5">{{review.created_at}}</span>
-</p>
+        </span>
+        <span class="fw-light text-primary fs-6 fst-normal ms-5">{{review.created_at}}</span>
+        </p>
     </div>
 </html>
