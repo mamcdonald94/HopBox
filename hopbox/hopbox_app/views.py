@@ -70,10 +70,6 @@ def  disp_option(request, optionNum):
 
         user_obj = User.objects.get(id=request.session['user_id'])
 
-        print("Option number = " + str(optionNum))
-        print(Subscription.objects.filter(id=optionNum).exists())
-
-
         if Subscription.objects.filter(id=optionNum).exists():
             subscript_obj = Subscription.objects.get(id = optionNum)
         else:
@@ -108,9 +104,6 @@ def  disp_option(request, optionNum):
 
         if Review.objects.filter(review_of = subscript_obj).exists():
             review_objs = Review.objects.filter(review_of = subscript_obj)
-            # if UserImage.objects.filter(image_for_review = review_objs).exists():
-            #     userimage_objs = UserImage.objects.filter(image_for_review = review_objs)
-            # else:
             userimage_objs = []
         else:
             review_objs = []
@@ -136,11 +129,9 @@ def  disp_option(request, optionNum):
 
 def add_review(request):
 
-    print("Displaying Option page")  
 
     if 'user_id' in request.session:
         if request.method == "POST":
-            print("Displaying Option page for logged in user") 
 
             optionNum = request.POST['optionNum']
 
@@ -167,8 +158,6 @@ def add_review(request):
 
 
 def add_user_image(request):
-
-    print("Adding user image to option page")  
 
     if 'user_id' in request.session:
 

@@ -54,16 +54,11 @@
             <img src="{% static 'images/stout-stan.png' %}" alt="stout-stan.png" class="container d-flex justify-content-center col-8 mt-5" height="450" style="width: auto;">
             {% endif %}
 
+            <h3 class="container text-center col-4 mt-5 p-2">Subscription Price: ${{subscriptions.price}} + S&H</h3>
             <h3 class="container text-center col-4 mt-5 p-2">Shipping Info:</h3>
             <div class="container col-5 justify-content-center mt-4 mb-3">
                 <input type="text" class="form-control mb-3 border border-danger" name="address"
-                    value="{{this_user.address}}">
-                <!-- <div class="container d-flex col-12 justify-content-evenly">
-                    <input type="text" class="form-control m-1 border border-danger" name="city_address"
-                        value="{{logged_user.city_address}}">
-                    <input type="text" class="form-control m-1 border border-danger" name="state_address"
-                        value="{{logged_user.state_address}}">
-                </div> -->
+                    value="{{user.address}}">
                 <button type="submit" class="container d-flex mt-3 mb-5 btn-success col-4 p-2 justify-content-center fw-bold rounded">Submit Order</button>
             </div>
         </form>

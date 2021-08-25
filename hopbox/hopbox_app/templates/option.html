@@ -44,8 +44,8 @@
         {% endif %}
         <p class="fst-italic fs-5 mt-4 d-flex justify-content-center">
             {{subscriptions.description}}
-            <br>
         </p>
+        <p class="fst-italic fs-5 mt-4 d-flex justify-content-center">$ {{subscriptions.price}} + S&H</p>
 
         <form action="/cart/" method="post" class="container d-flex col-3 justify-content-center">
             {% csrf_token %}
