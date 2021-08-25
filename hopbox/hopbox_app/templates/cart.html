@@ -21,7 +21,7 @@
                     <a class="nav-link text-success m-3" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active text-success m-3" aria-current="page" href="/cart">Cart</a>
+                    <a class="nav-link active text-secondary m-3" aria-current="page" href="/cart">Cart</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link m-3 text-success" href="/manage-account">Manage Account</a>
@@ -35,8 +35,9 @@
     </nav>
     <div>
         <form class="container p-2 rounded" style="background-color: #91B957;" action="/register" method="POST">
-            <!-- {% csrf_token %} -->
+            {% csrf_token %}
             <h3 class="container text-center mt-5 p-2">Here is your cart, {{user.firstname}}</h3>
+            <h5 class="container text-center mt-3">{{subscritpions.box_name}}</h5>
             <div class="container col-3 justify-content-center mt-4 mb-3">
                 <img src="{{subscriptions.selected_product.image_path}}" alt="{{subscriptions.selected_product.image_path}}" class="container d-flex justify-content-center col-5 mt-5" height="250">
                 <!-- this is what it should look like (below) -->
