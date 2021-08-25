@@ -34,14 +34,11 @@ def disp_home(request):
 
 def disp_cart(request):
 
-    # print("Displaying Cart page")  
 
     if 'user_id' in request.session:
-        # print("Displaying Cart page for logged in user") 
         user_obj = User.objects.get(id=request.session['user_id'])
 
         if request.method == "POST":
-            # print(request.POST['sel_opt'])
             subscript_obj = Subscription.objects.get(id=request.POST['sel_opt'])
             request.session['sel_opt'] = request.POST['sel_opt']
         else:
@@ -56,30 +53,18 @@ def disp_cart(request):
         }
 
         return render(request, "cart.html",context)
-    else:
-        context = {
-            'user' : user_obj,
-            'subscriptions' : subscript_obj,
-        }
 
-        return render(request, "cart.html",context)
     else:
         redirect("/")
-    # else:
-    #     context = {
-    #         "login_msg" : "Please log in first."
-    #     }
-
-    #     return render(request, "login.html", context) 
 
 
 def submit_order(request):
-    print("Order placed!")
+    messages.success(request, "you have successfully placed an order!")
 
-    return redirect("/cart")
+    return redirect("/cart/")
 
 
-def  disp_option(request,optionNum):  
+def  disp_option(request, optionNum):  
 
     if 'user_id' in request.session:
 
