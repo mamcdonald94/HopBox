@@ -67,7 +67,7 @@ def disp_cart(request):
 def submit_order(request):
     print("Order placed!")
 
-    return redirect("/cart/")
+    return redirect("/cart")
 
 
 def  disp_option(request,optionNum):  
