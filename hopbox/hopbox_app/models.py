@@ -34,10 +34,13 @@ def review_validator(value):
 # we don't need any validators because we will manually create the product objects
 class Product(models.Model):
     description = models.TextField()
-    image_path = models.CharField(max_length=255)
-    image_alt = models.CharField(max_length=255)
+    image_path = models.CharField(max_length=255, null=True)
+    image_alt = models.CharField(max_length=255, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.description}"
 
 class Subscription(models.Model):
     description = models.TextField(null=True)
@@ -48,6 +51,9 @@ class Subscription(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # subscription_reviews = list of all reviews for this subscription
     # users_subscribed = list of all users subscribed to this subscription
+
+    def __str__(self):
+        return f"{self.box_name}"
 
 class User(models.Model):
     firstname = models.CharField(max_length=255, validators=[name_validator])
@@ -61,6 +67,9 @@ class User(models.Model):
     # user_reviews = list of all reviews provided by this user
     # user_images = list of all images uploaded by user
 
+    def __str__(self):
+        return f"{self.firstname} {self.lastname}"
+
 class Review(models.Model):
     comment = models.TextField(validators=[review_validator])
     submitted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_reviews", blank=True, null=True)
@@ -70,6 +79,9 @@ class Review(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # review_image = image associated with this review
 
+    def __str__(self):
+        return f"{self.submitted_by.firstname}'s review"
+
 class UserImage(models.Model):
     user_image_path = models.CharField(max_length=255)
     user_image_alt = models.CharField(max_length=255)
@@ -77,3 +89,6 @@ class UserImage(models.Model):
     image_from_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_images", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.image_from_user.firstname}'s imagew"

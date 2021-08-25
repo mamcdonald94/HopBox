@@ -35,7 +35,7 @@
     </nav>
     <div>
         {% if messages %}
-        <ul class="messages" style="list-style-type: none;">
+        <ul class="messages d-flex justify-content-center" style="list-style-type: none;">
             {% for message in messages %}
             <li {% if message.tags %} class="{{message.tags}}" {% endif %} style="color: black;">{{message}}
             </li>
@@ -45,12 +45,14 @@
         <form class="container p-2 rounded" style="background-color: #91B957;" action="/cart/order/" method="POST">
             {% csrf_token %}
             <h3 class="container text-center mt-5 p-2">Here is your cart, {{user.firstname}}</h3>
-            <h5 class="container text-center mt-3">{{subscriptions.box_name}}</h5>
-            <div class="container col-3 justify-content-center mt-4 mb-3">
-                <img src="{{subscriptions.selected_product.image_path}}" alt="{{subscriptions.selected_product.image_path}}" class="container d-flex justify-content-center col-5 mt-5" height="250">
-                <!-- this is what it should look like (below) -->
-                <img src="{% static 'images/lager-lover.png' %}" alt="{{subscriptions.selected_product.image_path}}" class="container d-flex justify-content-center col-5 mt-5" height="250">
-            </div>
+            <h5 class="container text-center mt-3">{{subscriptions.box_name|title}}</h5>
+            {% if subscriptions.id == 1 %}
+            <img src="{% static 'images/hoppy-happy.png' %}" alt="hoppy-happy.png" class="container d-flex justify-content-center col-8 mt-5" height="450" style="width: auto;">
+            {% elif subscriptions.id == 2 %}
+            <img src="{% static 'images/lager-lover.png' %}" alt="lager-lover.png" class="container d-flex justify-content-center col-8 mt-5" height="450" style="width: auto;">
+            {% elif subscriptions.id == 3 %}
+            <img src="{% static 'images/stout-stan.png' %}" alt="stout-stan.png" class="container d-flex justify-content-center col-8 mt-5" height="450" style="width: auto;">
+            {% endif %}
 
             <h3 class="container text-center col-4 mt-5 p-2">Shipping Info:</h3>
             <div class="container col-5 justify-content-center mt-4 mb-3">
