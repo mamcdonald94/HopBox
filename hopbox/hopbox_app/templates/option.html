@@ -18,13 +18,13 @@
             </a>
             <ul class="container nav nav-tabs fs-5">
                 <li class="nav-item">
-                    <a class="nav-link text-success m-3 " href="#">Home</a>
+                    <a class="nav-link text-success m-3 " href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-success m-3" href="#">Cart</a>
+                    <a class="nav-link text-success m-3" href="/cart">Cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link m-3 text-success" aria-current="page" href="#">Manage Account</a>
+                    <a class="nav-link m-3 text-success"  href="/manage-account">Manage Account</a>
                 </li>
             </ul>
             <p class="fs-5">
@@ -45,16 +45,22 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae cumque officia vitae eligendi
             aliquam impedit debitis incidunt. Optio doloribus perspiciatis velit consectetur cum nobis!
         </p>
-        <a href="/cart" role="button" class="container d-flex col-3 btn btn-lg btn-success justify-content-center fw-bold mt-4">Select this Subscription</a>
+
+        <form action="/cart/" method="post" class="container d-flex col-3 justify-content-center">
+            {% csrf_token %}
+            <input type="hidden" name="sel_opt" id="sel_opt" value="{{subscriptions.id}}">
+            <button type="submit" class="btn btn-success text-light m-1 fw-bold mt-4">Select This Subscription</button>
+        </form>
+        <!-- <a href="/cart" role="button" class="container d-flex col-3 btn btn-lg btn-success justify-content-center fw-bold mt-4">Select this Subscription</a> -->
     </div>
     
-    <form action="/options/review" method="POST" class="container rounded p-5 mt-4">
+    <form action="/option/review/" method="POST" class="container rounded p-5 mt-4">
         {% csrf_token %}
         <label for="comment" class="form-label">
             <h2>Reviews: </h2>
         </label>
         <input type="text" class="form-control" placeholder="Leave a review here!" name="comment">
-    
+        <input type="hidden" name="optionNum" id="optionNum" value="{{subscriptions.id}}">
         <button type="submit" class="container d-flex me-5 mt-3 fw-bold mb-2 btn-success col-1 p-2 justify-content-center rounded">Submit</button>
     </form>
     {% if messages %}
@@ -78,7 +84,7 @@
     </div>
 {% endfor %}
 
-<!-- This (below) is what it should look like -->
+<!-- This (below) is what it should look like/the information below can be deleted once the reviews are rendering correctly.-->
     <div class="container border border-4 border-success overflow-scroll rounded p-2 mt-1" style='max-height: 350px; max-width: 1200px;' >     
         <p class="fw-bold fs-5 mt-4">{{user_obj.firstname}}{{user_obj.lastname}} wrote
                 <br>
