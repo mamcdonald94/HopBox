@@ -19,7 +19,7 @@ a{
 }
 
 .index-content p, form{
-    padding:20px; 
+    padding:10px; 
     text-align:center;
     align-items:center;
 }
@@ -34,11 +34,22 @@ a{
     width:500px;
 }
 
+#option-boxes{
+    display:flex;
+}
+
 .option-box img{
     width:300px; 
     margin:15px;
+    display:flex;
 }
+
 
 .option-box p{
     margin: 0px 15px 0px 15px;
+}
+
+.col-3 {
+    flex: 0 0 auto;
+    width: 50%;
 }

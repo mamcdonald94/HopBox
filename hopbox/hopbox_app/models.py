@@ -42,7 +42,7 @@ class Product(models.Model):
 class Subscription(models.Model):
     description = models.TextField(null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    option_id = models.CharField(max_length=255, default="custom")
+    box_name = models.CharField(max_length=255, default="custom")
     selected_product = models.ManyToManyField(Product) # ManyToMany with product  
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
