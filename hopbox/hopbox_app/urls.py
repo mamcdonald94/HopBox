@@ -17,11 +17,21 @@ Including another URLconf
 from django.urls import path
 from . import views
 
+# need to add urlpatterns for different subscription boxes
+
 urlpatterns = [
-    path('home',views.disp_home),
-    path('cart',views.disp_cart), 
-    path('cart/order',views.submit_order), 
-    path('option/<int:optionNum>',views.disp_option),
-    path('option/review',views.add_review),
-    path('option/user_image',views.add_user_image), 
+    path('', views.landing_page),
+    path('home/', views.disp_home),
+    path('register/', views.registration),
+    path('register/create-user/', views.create_user),
+    path('login/', views.login_page),
+    path('login/login-user/', views.login),
+    path('manage-account/', views.manage_account),
+    path('update-account/', views.update_account),
+    path('logout/', views.logout),
+    path('cart/', views.disp_cart), 
+    path('cart/order/', views.submit_order), 
+    path('option/<int:optionNum>/', views.disp_option),
+    path('option/review/', views.add_review),
+    path('option/user_image/', views.add_user_image), 
 ]

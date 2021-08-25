@@ -1,0 +1,50 @@
+*{
+    margin:0px;
+    padding:0px; 
+}
+
+#container{
+    width: 970px; 
+    margin:auto;
+}
+
+a{
+    color:#91B957;
+}
+
+.index-box{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.index-content p, form{
+    padding:20px; 
+    text-align:center;
+    align-items:center;
+}
+
+#testimonials img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headline-img img{
+    width:500px;
+}
+
+.option-box img{
+    width:300px; 
+    margin:15px;
+}
+
+.option-box p{
+    margin: 0px 15px 0px 15px;
+}
+
+
+.subscription-image {
+    background: url("/static/images/8.jpg");
+    background-size: cover;
+}

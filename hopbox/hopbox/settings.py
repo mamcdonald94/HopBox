@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qj+p@az!1tg7gx38%0vlbzcgm$b-9%=i!va@=k%7s%l@cw&85o'
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,6 +34,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'hopbox_app',
+    'django.forms',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,6 +74,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'hopbox.wsgi.application'
 
+# this was also added, remove if having problems
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+# this was also added, remove if having problems
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# this was also added, remove if having problems
+CRISPY_FAIL_SILENTLY = not DEBUG
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
