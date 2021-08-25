@@ -58,10 +58,19 @@ def disp_cart(request):
         return render(request, "cart.html",context)
     else:
         context = {
-            "login_msg" : "Please log in first."
+            'user' : user_obj,
+            'subscriptions' : subscript_obj,
         }
 
-        return render(request, "login.html", context) 
+        return render(request, "cart.html",context)
+    else:
+        redirect("/")
+    # else:
+    #     context = {
+    #         "login_msg" : "Please log in first."
+    #     }
+
+    #     return render(request, "login.html", context) 
 
 
 def submit_order(request):

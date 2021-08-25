@@ -21,10 +21,10 @@
                     <a class="nav-link text-success m-3 " href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-success m-3" href="#">Cart</a>
+                    <a class="nav-link text-success m-3" href="/cart">Cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link m-3 text-success" aria-current="page" href="#">Manage Account</a>
+                    <a class="nav-link m-3 text-success"  href="/manage-account">Manage Account</a>
                 </li>
             </ul>
             <p class="fs-5">
@@ -84,7 +84,7 @@
     </div>
 {% endfor %}
 
-<!-- This (below) is what it should look like -->
+<!-- This (below) is what it should look like/the information below can be deleted once the reviews are rendering correctly.-->
     <div class="container border border-4 border-success overflow-scroll rounded p-2 mt-1" style='max-height: 350px; max-width: 1200px;' >     
         <p class="fw-bold fs-5 mt-4">{{user_obj.firstname}}{{user_obj.lastname}} wrote
                 <br>
