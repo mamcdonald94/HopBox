@@ -45,26 +45,23 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae cumque officia vitae eligendi
             aliquam impedit debitis incidunt. Optio doloribus perspiciatis velit consectetur cum nobis!
         </p>
-        <!-- if user is logged in they can button is green and takes you to cart page...or else btn is grey and wont take you anywhere.  -->
-        {% if user in request.session %}
-        <a href="/cart" role="button" class="container d-flex col-3 btn btn-lg btn-success justify-content-center fw-bold mt-4">Select this Subscription</a>
-        {% else %}
-        <a href="#" role="button" class="container d-flex col-3 btn btn-lg btn-secondary justify-content-center fw-bold mt-4">Select this Subscription</a>
-        {% endif %}
+
+        <form action="/cart/" method="post" class="container d-flex col-3 justify-content-center">
+            {% csrf_token %}
+            <input type="hidden" name="sel_opt" id="sel_opt" value="{{subscriptions.id}}">
+            <button type="submit" class="btn btn-success text-light m-1 fw-bold mt-4">Select This Subscription</button>
+        </form>
+        <!-- <a href="/cart" role="button" class="container d-flex col-3 btn btn-lg btn-success justify-content-center fw-bold mt-4">Select this Subscription</a> -->
     </div>
     
-    <form action="/options/review" method="POST" class="container rounded p-5 mt-4">
+    <form action="/option/review/" method="POST" class="container rounded p-5 mt-4">
         {% csrf_token %}
         <label for="comment" class="form-label">
             <h2>Reviews: </h2>
         </label>
         <input type="text" class="form-control" placeholder="Leave a review here!" name="comment">
-    {% if user in request.session %}
-        <button type="submit" class="container disable d-flex me-5 mt-3 fw-bold mb-2 btn-success col-1 p-2 justify-content-center rounded">Submit</button>
-    {% else %}
-        <button type="reset" class="container disable d-flex me-5 mt-3 fw-bold mb-2 btn-secondary col-1 p-2 justify-content-center rounded">Submit</button>
-    {% endif %}
-    <!-- if user is logged-in, button is green and submits review. else: button is grey and 'resets' -->
+        <input type="hidden" name="optionNum" id="optionNum" value="{{subscriptions.id}}">
+        <button type="submit" class="container d-flex me-5 mt-3 fw-bold mb-2 btn-success col-1 p-2 justify-content-center rounded">Submit</button>
     </form>
     {% if messages %}
     <ul class='container'>

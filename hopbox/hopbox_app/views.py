@@ -3,6 +3,7 @@ from .models import User, Product, Review, UserImage, Subscription
 from .forms import *
 from django.contrib import messages
 import bcrypt
+from django.contrib.auth.models import Group
 
 
 def landing_page(request):
@@ -32,11 +33,30 @@ def disp_home(request):
 
 
 def disp_cart(request):
-    if 'user_id' in request.session:
-        # if request.method == "POST":
-        user_obj = User.objects.get(id=request.session['user_id'])
-        subscript_obj = Subscription.objects.get(id=request.post['sel_subscription'])
 
+    # print("Displaying Cart page")  
+
+    if 'user_id' in request.session:
+        # print("Displaying Cart page for logged in user") 
+        user_obj = User.objects.get(id=request.session['user_id'])
+
+        if request.method == "POST":
+            # print(request.POST['sel_opt'])
+            subscript_obj = Subscription.objects.get(id=request.POST['sel_opt'])
+            request.session['sel_opt'] = request.POST['sel_opt']
+        else:
+            if 'sel_opt' in request.session:
+                subscript_obj = Subscription.objects.get(id=request.session['sel_opt'])
+            else:
+                subscript_obj = []
+
+        context = {
+            'user' : user_obj,
+            'subscriptions' : subscript_obj,
+        }
+
+        return render(request, "cart.html",context)
+    else:
         context = {
             'user' : user_obj,
             'subscriptions' : subscript_obj,
@@ -61,16 +81,55 @@ def submit_order(request):
 
 def  disp_option(request,optionNum):  
 
-    print("Displaying Option page")  
-
     if 'user_id' in request.session:
 
-        print("Displaying Option page for logged in user")  
-
         user_obj = User.objects.get(id=request.session['user_id'])
-        subscript_obj = Subscription.objects.get(option_id = optionNum)
-        review_objs = Review.objects.filter(review_of = subscript_obj)
-        userimage_objs = UserImage.objects.filter(image_for_review = review_objs)
+
+        print("Option number = " + str(optionNum))
+        print(Subscription.objects.filter(id=optionNum).exists())
+
+
+        if Subscription.objects.filter(id=optionNum).exists():
+            subscript_obj = Subscription.objects.get(id = optionNum)
+        else:
+            if optionNum == 1:
+                opt_description = "If there were ever a style most representative of classic American craft beer—this would be it."
+                opt_price = 49.99
+                opt_box_name = "hoppy-happy"
+                # opt_selected_product = ''
+            elif optionNum == 2:
+                opt_description = "Six subtle grain aroma American lagers brewed with corn, rice, or oats."
+                opt_price = 71.99
+                opt_box_name = "lager-lover"
+                # opt_selected_product = ''
+            elif optionNum == 3:
+                opt_description = "A mix of dry stouts, sweet or milk stouts, oatmeal stouts, or American stouts"
+                opt_price = 54.99
+                opt_box_name = "stout-stan"
+                # opt_selected_product = ''
+            else:
+                opt_description = "User made a custom option"
+                opt_price = 79.99
+                opt_box_name = "custom"
+                # opt_selected_product = ''
+
+            subscript_obj = Subscription.objects.create(
+                description = opt_description,
+                price = opt_price,
+                box_name = opt_box_name,
+                # selected_product = opt_selected_product,
+            )
+
+
+        if Review.objects.filter(review_of = subscript_obj).exists():
+            review_objs = Review.objects.filter(review_of = subscript_obj)
+            # if UserImage.objects.filter(image_for_review = review_objs).exists():
+            #     userimage_objs = UserImage.objects.filter(image_for_review = review_objs)
+            # else:
+            userimage_objs = []
+        else:
+            review_objs = []
+            userimage_objs = []
 
         context = {
             'user' : user_obj,
@@ -101,16 +160,16 @@ def add_review(request):
             optionNum = request.POST['optionNum']
 
             user_obj = User.objects.get(id=request.session['user_id'])
-            subscript_obj = Subscription.objects.get(option_id = optionNum)
+            subscript_obj = Subscription.objects.get(id = optionNum)
 
             Review.objects.create(
                 comment = request.POST['comment'],
-                submited_by = user_obj,
+                submitted_by = user_obj,
                 review_of = subscript_obj,
-                score = request.POST['score']
+                score = 5,
             )
 
-        return redirect("/option" + str(optionNum))
+        return redirect("/option/" + str(optionNum))
 
 
     else:
