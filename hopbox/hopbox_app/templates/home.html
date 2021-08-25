@@ -29,7 +29,7 @@
         <h4>Check out our Subscription Box Options Below</h4>
         <div class="index-box">
             <div class="option-box">
-                <img src=static/images/hoppy-happy.png alt="hoppy-happy">
+                <img src="{% static 'images/hoppy-happy.png'%}" alt="hoppy-happy">
                 <p>The higher the IBU the better? Then this box is for you! These option includes the hoppiest of hoppy beers</p>
                 <form action="/cart" method="get">
                     <button type="submit">I Want Hops!</button>
@@ -39,7 +39,7 @@
                 </form>
             </div>
             <div class="option-box">
-                <img src=static/images/lager-lover.png alt="lager-lover">
+                <img src="{% static 'images/lager-lover.png' %}" alt="lager-lover">
                 <p>Looking for light and crisp? Then you might be a 'Lager Lover'! Choose this box for a variety of lagers sent right to your door.</p>
                 <form action="/cart" method="get">
                     <button type="submit">I Want Lagers!</button>
@@ -49,7 +49,7 @@
                 </form>
             </div>
             <div class="option-box">
-                <img src=static/images/stout-stan.png alt="stout-stan">
+                <img src="{% static 'images/stout-stan.png' %}" alt="stout-stan">
                 <p>Dark Beers or bust? This box includes a variety of flavored stouts, porters, and other dar, and creamy varieties.</p>
                 <form action="/cart" method="get">
                     <button type="submit">I Want Dark Beer!</button>
