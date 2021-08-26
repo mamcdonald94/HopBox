@@ -52,6 +52,7 @@ a{
 .col-3 {
     flex: 0 0 auto;
     width: 50%;
+}
 
 .subscription-image {
     background: url("/static/images/8.jpg");

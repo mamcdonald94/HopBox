@@ -239,7 +239,7 @@ def update_account(request):
                 edited_account.save()
                 messages.success(request, 'you have successfully updated your account!')
                 return redirect('/manage-account')
-            
+
             return render(request, 'edit_account.html', context={'AccountForm': account_form})
 
 def login(request):

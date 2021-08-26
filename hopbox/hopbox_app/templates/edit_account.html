@@ -31,14 +31,14 @@
                 </li>
             </ul>
             <p class="fs-5">
-                Welcome, {{this_user.firstname}}  <br>   
+                Welcome, {{this_user.firstname}}<br>   
                 <a href="/logout" class="me-4 text-blue">Log-Off</a>
             </p>
         </div>
     </nav>
     <div class="container p-2 rounded" style="background-color: #91B957; width: 750px;">
         {% if messages %}
-        <ul class="messages" style="list-style-type: none;">
+        <ul class="messages d-flex justify-content-center" style="list-style-type: none;">
             {% for message in messages %}
             <li {% if message.tags %} class="{{message.tags}}" {% endif %} style="color: black;">{{message}}
             </li>

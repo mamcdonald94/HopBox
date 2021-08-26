@@ -99,7 +99,8 @@ class EditAccountForm(forms.ModelForm):
                 'confirm_password',
                 'address'
             ),
+            # needs to be submit otherwise form will not submit
             FormActions(
-                StrictButton('Update Account', css_class='btn-success')
+                Submit('submit', 'Update Account', css_class='btn-success')
             ),
         )
