@@ -70,6 +70,10 @@ class User(models.Model):
     def __str__(self):
         return f"{self.firstname} {self.lastname}"
 
+# should define some cart model in the future, maybe UserCart?
+# ties to User via a One to One (user can have one cart, each cart one user)
+# items attribute (maybe a list of product ids?) iterate through in views/HTML and render appropriate products
+
 class Review(models.Model):
     comment = models.TextField(validators=[review_validator])
     submitted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_reviews", blank=True, null=True)
